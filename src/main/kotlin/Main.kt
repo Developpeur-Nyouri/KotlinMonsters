@@ -5,10 +5,14 @@ import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
 
-//Entraineur
+// --- Entraîneurs ---
+// Création de 2 entraîneurs : le joueur et son rival, chacun avec un nom et de l'argent de départ
 var joueur = Entraineur(1, "Sacha", 100)
-var rival = Entraineur(2,"Regis",200)
-//Especes
+var rival = Entraineur(2, "Regis", 200)
+
+// --- Espèces ---
+// Chaque variable représente le "modèle générique" d'une espèce de monstre,
+// avec ses stats de base et ses modificateurs de level up, tirés du fichier Excel
 val especeSpringleaf = EspeceMonstre(
     id = 1,
     nom = "Springleaf",
@@ -122,39 +126,53 @@ val especeGalum = EspeceMonstre(
     modPv = 13.0,
     description = "Golem ancien de pierre, yeux lumineux en garde."
 )
+
+// --- Zones ---
+// route1 est créée en premier, donc on ne peut pas encore lui donner sa zoneSuivante (route2 n'existe pas encore)
 val route1 = Zone(
     id = 1,
     nom = "Route 1",
     expZone = 10,
-    especesMonstres = mutableListOf(especeSpringleaf, especeFlamkip)
+    especesMonstres = mutableListOf(especeSpringleaf, especeFlamkip) // espèces rencontrables dans cette zone
 )
 
+// route2 peut directement pointer vers route1 comme zone précédente, car route1 existe déjà à ce stade
 val route2 = Zone(
     id = 2,
     nom = "Route 2",
     expZone = 20,
     especesMonstres = mutableListOf(especeAquamy, especeLaoumi)
 )
+
 fun main() {
 
+    // On lie manuellement les deux zones entre elles maintenant qu'elles existent toutes les deux
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
 
+    // Création de 3 monstres individuels de test, chacun avec 1500 XP de départ
+    // Grâce au bloc init de IndividuMonstre, ils vont automatiquement monter de niveau à la création
     val monstre1 = IndividuMonstre(1, "springleaf", 1500.0, especeSpringleaf)
     val monstre2 = IndividuMonstre(2, "flamkip", 1500.0, especeFlamkip)
     val monstre3 = IndividuMonstre(3, "aquamy", 1500.0, especeAquamy)
 
+    // Affiche les infos du joueur et du rival
     joueur.afficheDetail()
     rival.afficheDetail()
-    joueur.argents+=50
+
+    // Le joueur gagne 50 d'argent, puis on réaffiche ses infos pour vérifier le changement
+    joueur.argents += 50
     joueur.afficheDetail()
+
     /*
+    // Anciens tests d'affichage de couleurs dans la console, désactivés pour l'instant
     println(changeCouleur("Hello","rouge"))
     println(changeCouleur("World","bleu"))
     println("Hello ${changeCouleur("my","jaune")} World")
     println(changeCouleur("Truc","marron"))
-*/
+    */
 }
+
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
  * Cette fonction utilise les codes d'échappement ANSI pour appliquer une couleur à la sortie console. Si un nom de couleur
@@ -164,8 +182,8 @@ fun main() {
  * @param couleur Le nom de la couleur à appliquer (ex: "rouge", "vert", "bleu"). Par défaut c'est une chaîne vide, ce qui n'applique aucune couleur.
  * @return Le message coloré sous forme de chaîne, ou le même message si aucune couleur n'est appliquée.
  */
-fun changeCouleur(message: String, couleur:String=""): String {
-    val reset = "\u001B[0m"
+fun changeCouleur(message: String, couleur: String = ""): String {
+    val reset = "\u001B[0m" // code ANSI qui réinitialise la couleur après le message
     val codeCouleur = when (couleur.lowercase()) {
         "rouge" -> "\u001B[31m"
         "vert" -> "\u001B[32m"
@@ -176,6 +194,6 @@ fun changeCouleur(message: String, couleur:String=""): String {
         "blanc" -> "\u001B[37m"
         else -> "" // pas de couleur si non reconnu
     }
+    // On entoure le message avec le code couleur choisi, puis le code de reset
     return "$codeCouleur$message$reset"
 }
-
