@@ -1,6 +1,7 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 
 //Entraineur
@@ -120,7 +121,23 @@ val especeGalum = EspeceMonstre(
     modPv = 13.0,
     description = "Golem ancien de pierre, yeux lumineux en garde."
 )
+val route1 = Zone(
+    id = 1,
+    nom = "Route 1",
+    expZone = 10,
+    especesMonstres = mutableListOf(especeSpringleaf, especeFlamkip)
+)
+
+val route2 = Zone(
+    id = 2,
+    nom = "Route 2",
+    expZone = 20,
+    especesMonstres = mutableListOf(especeAquamy, especeLaoumi)
+)
 fun main() {
+
+    route1.zoneSuivante = route2
+    route2.zonePrecedante = route1
 
     joueur.afficheDetail()
     rival.afficheDetail()
