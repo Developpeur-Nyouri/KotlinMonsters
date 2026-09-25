@@ -18,6 +18,13 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -27,23 +34,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.2300469126562188" />
-      <entry key="MS500" value="1.7453551933994602" />
-      <entry key="S2" value="1.9291606742509133" />
-      <entry key="S5" value="1.9710382292507957" />
-      <entry key="S10" value="1.98541272026154" />
-      <entry key="S30" value="1.995833736493037" />
-      <entry key="S60" value="2.1374249664271185" />
-      <entry key="M2" value="4.402948569453281" />
-      <entry key="M5" value="17.374521225257467" />
-      <entry key="M10" value="32.248287650019414" />
-      <entry key="M15" value="40.33847120731933" />
-      <entry key="M30" value="50.944252852185684" />
-      <entry key="H1" value="57.46849995806061" />
-      <entry key="H2" value="61.09779107824093" />
-      <entry key="H4" value="63.0133532445636" />
-      <entry key="D1" value="64.66382916419789" />
-      <entry key="W1" value="64.95184991286872" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000428389988" />
+      <entry key="S5" value="1.001129108623859" />
+      <entry key="S10" value="1.0336022115917822" />
+      <entry key="S30" value="1.3226930680177076" />
+      <entry key="S60" value="1.569305008540968" />
+      <entry key="M2" value="1.8690847912138828" />
+      <entry key="M5" value="4.972822170663248" />
+      <entry key="M10" value="15.456882783896159" />
+      <entry key="M15" value="25.78614981757559" />
+      <entry key="M30" value="45.63551893631912" />
+      <entry key="H1" value="61.91676104148344" />
+      <entry key="H2" value="72.44403237746735" />
+      <entry key="H4" value="78.44429456679018" />
+      <entry key="D1" value="83.86656570600931" />
+      <entry key="W1" value="84.83705053338139" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -65,23 +72,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0416115182184804" />
-      <entry key="MS500" value="1.6337358263651423" />
-      <entry key="S2" value="1.8937049988003158" />
-      <entry key="S5" value="1.956145897308734" />
-      <entry key="S10" value="1.9778438061015338" />
-      <entry key="S30" value="1.9932829112520458" />
-      <entry key="S60" value="2.1361305509360173" />
-      <entry key="M2" value="4.402169516463899" />
-      <entry key="M5" value="17.373881764439275" />
-      <entry key="M10" value="32.247758973820005" />
-      <entry key="M15" value="40.33803821368447" />
-      <entry key="M30" value="50.94398152118952" />
-      <entry key="H1" value="57.468346931095766" />
-      <entry key="H2" value="61.097709662995356" />
-      <entry key="H4" value="63.01331123348665" />
-      <entry key="D1" value="64.66382197429388" />
-      <entry key="W1" value="64.9518488810397" />
+      <entry key="MS100" value="0.5625292423444047" />
+      <entry key="MS500" value="0.8913104958969712" />
+      <entry key="S2" value="0.9716442246586964" />
+      <entry key="S5" value="0.9896718758189789" />
+      <entry key="S10" value="1.0276126892140365" />
+      <entry key="S30" value="1.319965540080484" />
+      <entry key="S60" value="1.5676316027802681" />
+      <entry key="M2" value="1.8681234101505986" />
+      <entry key="M5" value="4.97231331473961" />
+      <entry key="M10" value="15.456462329198223" />
+      <entry key="M15" value="25.785762259169314" />
+      <entry key="M30" value="45.635221658635274" />
+      <entry key="H1" value="61.916569609803055" />
+      <entry key="H2" value="72.44392274572525" />
+      <entry key="H4" value="78.44423577164598" />
+      <entry key="D1" value="83.86655530615566" />
+      <entry key="W1" value="84.8370490323112" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -145,7 +152,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>10</line>
+          <line>20</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

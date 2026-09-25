@@ -1,13 +1,23 @@
 package org.example
 
+import org.example.dresseur.Entraineur
+//Entraineur
+var joueur = Entraineur(1, "Sacha", 100)
+var rival = Entraineur(2,"Regis",200)
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+
+    joueur.afficheDetail()
+    rival.afficheDetail()
+    joueur.argents+=50
+    joueur.afficheDetail()
+    /*
     println(changeCouleur("Hello","rouge"))
     println(changeCouleur("World","bleu"))
     println("Hello ${changeCouleur("my","jaune")} World")
     println(changeCouleur("Truc","marron"))
-
+*/
 }
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
@@ -32,3 +42,4 @@ fun changeCouleur(message: String, couleur:String=""): String {
     }
     return "$codeCouleur$message$reset"
 }
+
