@@ -3,6 +3,7 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
+import org.example.monstre.IndividuMonstre
 
 //Entraineur
 var joueur = Entraineur(1, "Sacha", 100)
@@ -138,6 +139,10 @@ fun main() {
 
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
+
+    val monstre1 = IndividuMonstre(1, "springleaf", 1500.0, especeSpringleaf)
+    val monstre2 = IndividuMonstre(2, "flamkip", 1500.0, especeFlamkip)
+    val monstre3 = IndividuMonstre(3, "aquamy", 1500.0, especeAquamy)
 
     joueur.afficheDetail()
     rival.afficheDetail()
