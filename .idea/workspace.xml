@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc409a94-cbbf-44c6-a005-4535e6ddffc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,23 +27,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.3418244514324111" />
-      <entry key="MS500" value="2.4610481191408633" />
-      <entry key="S2" value="5.12434085230552" />
-      <entry key="S5" value="8.205028956329823" />
-      <entry key="S10" value="10.150315519935194" />
-      <entry key="S30" value="11.921908188180797" />
-      <entry key="S60" value="12.442759427481652" />
-      <entry key="M2" value="12.71664821281277" />
-      <entry key="M5" value="12.885499389005158" />
-      <entry key="M10" value="12.942554310238727" />
-      <entry key="M15" value="12.96165930010353" />
-      <entry key="M30" value="12.980807824549743" />
-      <entry key="H1" value="12.99039844860963" />
-      <entry key="H2" value="12.99519785747612" />
-      <entry key="H4" value="12.997598586916764" />
-      <entry key="D1" value="12.99959971700126" />
-      <entry key="W1" value="12.999942815551448" />
+      <entry key="MS100" value="1.2300469126562188" />
+      <entry key="MS500" value="1.7453551933994602" />
+      <entry key="S2" value="1.9291606742509133" />
+      <entry key="S5" value="1.9710382292507957" />
+      <entry key="S10" value="1.98541272026154" />
+      <entry key="S30" value="1.995833736493037" />
+      <entry key="S60" value="2.1374249664271185" />
+      <entry key="M2" value="4.402948569453281" />
+      <entry key="M5" value="17.374521225257467" />
+      <entry key="M10" value="32.248287650019414" />
+      <entry key="M15" value="40.33847120731933" />
+      <entry key="M30" value="50.944252852185684" />
+      <entry key="H1" value="57.46849995806061" />
+      <entry key="H2" value="61.09779107824093" />
+      <entry key="H4" value="63.0133532445636" />
+      <entry key="D1" value="64.66382916419789" />
+      <entry key="W1" value="64.95184991286872" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -69,23 +65,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2620584745585406" />
-      <entry key="MS500" value="2.4064254933159006" />
-      <entry key="S2" value="5.0877229029082045" />
-      <entry key="S5" value="8.18057390367893" />
-      <entry key="S10" value="10.135147616136265" />
-      <entry key="S30" value="11.915982736536145" />
-      <entry key="S60" value="12.439670544053163" />
-      <entry key="M2" value="12.715070733539939" />
-      <entry key="M5" value="12.884860267641601" />
-      <entry key="M10" value="12.942233377509318" />
-      <entry key="M15" value="12.961445038770055" />
-      <entry key="M30" value="12.980700540471105" />
-      <entry key="H1" value="12.990344768156902" />
-      <entry key="H2" value="12.995171007638838" />
-      <entry key="H4" value="12.997585159594447" />
-      <entry key="D1" value="12.99959747878028" />
-      <entry key="W1" value="12.999942495797416" />
+      <entry key="MS100" value="1.0416115182184804" />
+      <entry key="MS500" value="1.6337358263651423" />
+      <entry key="S2" value="1.8937049988003158" />
+      <entry key="S5" value="1.956145897308734" />
+      <entry key="S10" value="1.9778438061015338" />
+      <entry key="S30" value="1.9932829112520458" />
+      <entry key="S60" value="2.1361305509360173" />
+      <entry key="M2" value="4.402169516463899" />
+      <entry key="M5" value="17.373881764439275" />
+      <entry key="M10" value="32.247758973820005" />
+      <entry key="M15" value="40.33803821368447" />
+      <entry key="M30" value="50.94398152118952" />
+      <entry key="H1" value="57.468346931095766" />
+      <entry key="H2" value="61.097709662995356" />
+      <entry key="H4" value="63.01331123348665" />
+      <entry key="D1" value="64.66382197429388" />
+      <entry key="W1" value="64.9518488810397" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -99,7 +95,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build KotlinMonsters.executor": "Run",
     "Gradle.KotlinMonsters [:org.example.MainKt.main()].executor": "Run",
+    "KEY_CHAT_IN_TOOLWINDOW": "false",
+    "Kotlin.MainKt.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -146,7 +145,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>13</line>
+          <line>10</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
