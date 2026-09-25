@@ -34,61 +34,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000428389988" />
-      <entry key="S5" value="1.001129108623859" />
-      <entry key="S10" value="1.0336022115917822" />
-      <entry key="S30" value="1.3226930680177076" />
-      <entry key="S60" value="1.569305008540968" />
-      <entry key="M2" value="1.8690847912138828" />
-      <entry key="M5" value="4.972822170663248" />
-      <entry key="M10" value="15.456882783896159" />
-      <entry key="M15" value="25.78614981757559" />
-      <entry key="M30" value="45.63551893631912" />
-      <entry key="H1" value="61.91676104148344" />
-      <entry key="H2" value="72.44403237746735" />
-      <entry key="H4" value="78.44429456679018" />
-      <entry key="D1" value="83.86656570600931" />
-      <entry key="W1" value="84.83705053338139" />
+      <entry key="MS100" value="1.000000017598162" />
+      <entry key="MS500" value="1.0281284556902068" />
+      <entry key="S2" value="1.4544023502876522" />
+      <entry key="S5" value="2.0660963363477536" />
+      <entry key="S10" value="2.6586616994719403" />
+      <entry key="S30" value="3.7898154332293794" />
+      <entry key="S60" value="5.159136024156967" />
+      <entry key="M2" value="6.815100368190156" />
+      <entry key="M5" value="9.217975782217268" />
+      <entry key="M10" value="14.179280480557775" />
+      <entry key="M15" value="21.160622857498463" />
+      <entry key="M30" value="40.64431389565346" />
+      <entry key="H1" value="62.0597224775161" />
+      <entry key="H2" value="78.30425343897198" />
+      <entry key="H4" value="88.36435048812204" />
+      <entry key="D1" value="97.94088039481339" />
+      <entry key="W1" value="99.70275840727437" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="MS500" value="1.8824442206668792E-75" />
+      <entry key="S2" value="2.0829580767535528E-19" />
+      <entry key="S5" value="3.3687765990865195E-8" />
+      <entry key="S10" value="1.835422730350292E-4" />
+      <entry key="S30" value="0.056830136861609114" />
+      <entry key="S60" value="0.23839072310307935" />
+      <entry key="M2" value="0.48825272462432756" />
+      <entry key="M5" value="0.7506852285177739" />
+      <entry key="M10" value="0.8664209303322338" />
+      <entry key="M15" value="0.9088369106026288" />
+      <entry key="M30" value="0.9533293820095075" />
+      <entry key="H1" value="0.9763858776167893" />
+      <entry key="H2" value="0.988122400118927" />
+      <entry key="H4" value="0.9940434598743291" />
+      <entry key="D1" value="0.9990047703908559" />
+      <entry key="W1" value="0.9998577636624099" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.5625292423444047" />
-      <entry key="MS500" value="0.8913104958969712" />
-      <entry key="S2" value="0.9716442246586964" />
-      <entry key="S5" value="0.9896718758189789" />
-      <entry key="S10" value="1.0276126892140365" />
-      <entry key="S30" value="1.319965540080484" />
-      <entry key="S60" value="1.5676316027802681" />
-      <entry key="M2" value="1.8681234101505986" />
-      <entry key="M5" value="4.97231331473961" />
-      <entry key="M10" value="15.456462329198223" />
-      <entry key="M15" value="25.785762259169314" />
-      <entry key="M30" value="45.635221658635274" />
-      <entry key="H1" value="61.916569609803055" />
-      <entry key="H2" value="72.44392274572525" />
-      <entry key="H4" value="78.44423577164598" />
-      <entry key="D1" value="83.86655530615566" />
-      <entry key="W1" value="84.8370490323112" />
+      <entry key="MS100" value="0.8350879194283702" />
+      <entry key="MS500" value="0.9656040999102994" />
+      <entry key="S2" value="1.2120204587283607" />
+      <entry key="S5" value="1.8269567683066779" />
+      <entry key="S10" value="2.455424141685832" />
+      <entry key="S30" value="3.7226350099554426" />
+      <entry key="S60" value="5.309623613067745" />
+      <entry key="M2" value="7.245474627898112" />
+      <entry key="M5" value="9.940094408611287" />
+      <entry key="M10" value="15.030170884626756" />
+      <entry key="M15" value="22.058739970970326" />
+      <entry key="M30" value="41.59202303695596" />
+      <entry key="H1" value="63.03319957803292" />
+      <entry key="H2" value="79.29088901612752" />
+      <entry key="H4" value="89.35764107752621" />
+      <entry key="D1" value="98.93975823481274" />
+      <entry key="W1" value="100.70259800047765" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -147,15 +147,15 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
