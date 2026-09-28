@@ -155,7 +155,18 @@ fun main() {
     val monstre1 = IndividuMonstre(1, "springleaf", 1500.0, especeSpringleaf)
     val monstre2 = IndividuMonstre(2, "flamkip", 1500.0, especeFlamkip)
     val monstre3 = IndividuMonstre(3, "aquamy", 1500.0, especeAquamy)
+    monstre1.exp = 3000.0
+    monstre1.pv = -50
+    println("pv après -50 : ${monstre1.pv}")
+    monstre1.pv = 99999
+    println("pv après 99999 : ${monstre1.pv} (pvMax = ${monstre1.pvMax})")
+    println("pv de monstre2 avant : ${monstre2.pv}")
+    monstre1.attaquer(monstre2)
+    println("pv de monstre2 après : ${monstre2.pv}")
+//    monstre1.renommer()
+//    println("Nouveau nom : ${monstre1.nom}")
 
+    monstre1.afficheDetail()
     // Affiche les infos du joueur et du rival
     joueur.afficheDetail()
     rival.afficheDetail()

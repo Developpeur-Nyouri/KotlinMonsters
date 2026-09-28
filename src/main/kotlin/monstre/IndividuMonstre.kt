@@ -34,12 +34,13 @@ class IndividuMonstre(
     var exp: Double = 0.0
         get() = field // renvoie simplement la valeur stockée, comportement par défaut
         set(value) {
-            field = value // on stocke d'abord la nouvelle valeur d'expérience
-            val estNiveau1 = niveau == 1 // vérifie si le monstre est encore niveau 1 (info non utilisée pour l'instant)
-            // tant que l'exp actuelle dépasse le palier requis pour le niveau en cours,
-            // on fait monter le monstre de niveau (boucle utile si plusieurs niveaux d'un coup)
+            field = value
+            val estNiveau1 = niveau == 1
             while (field >= palierExp(niveau)) {
                 levelUp()
+                if (!estNiveau1) {
+                    println("Le monstre $nom est maintenant niveau $niveau !")
+                }
             }
         }
 
@@ -73,12 +74,66 @@ class IndividuMonstre(
         vitesse += (Math.round(espece.modVitesse * potentiel) + Random.nextInt(-2, 3)).toInt()
         attaqueSpe += (Math.round(espece.modAttaqueSpe * potentiel) + Random.nextInt(-2, 3)).toInt()
         defenseSpe += (Math.round(espece.modDefenseSpe * potentiel) + Random.nextInt(-2, 3)).toInt()
+        val ancienPvMax = pvMax
         pvMax += (Math.round(espece.modPv * potentiel) + Random.nextInt(-5, 6)).toInt()
+        pv += pvMax - ancienPvMax
 
-        // Message affiché à chaque montée de niveau
-        println("Le monstre $nom est maintenant niveau $niveau !")
     }
 
+    /**
+     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
+     *
+     * @param cible Monstre cible de l'attaque.
+     */
+    fun attaquer(cible: IndividuMonstre) {
+        val degatBrut = this.attaque
+        var degatTotal = degatBrut - (this.defense / 2)
+        if (degatTotal < 1) {
+            degatTotal = 1
+        }
+        val pvAvant = cible.pv
+        cible.pv -= degatTotal
+        val pvApres = cible.pv
+        println("${this.nom} inflige ${pvAvant - pvApres} dégâts à ${cible.nom}")
+    }
+
+    /**
+     * Demande au joueur de renommer le monstre.
+     *
+     * Si l'utilisateur entre un texte vide, le nom n'est pas modifié.
+     */
+    fun renommer() {
+        println("Renommer $nom ?")
+        val nouveauNom = readln()
+        if (nouveauNom.isNotEmpty()) {
+            this.nom = nouveauNom
+        }
+    }
+
+    /**
+     * Affiche l'art ASCII du monstre suivi de ses caractéristiques détaillées.
+     */
+    fun afficheDetail() {
+        // 1. Affiche l'art ASCII du monstre de face
+        println(espece.afficheArt(deFace = true))
+
+        // 2. Affiche les caractéristiques du monstre
+        val type = ""
+        println("===== $nom ($type) =====")
+        println("Espèce   : ${espece.nom}")
+        println("Niveau   : $niveau")
+        println("EXP      : $exp / ${palierExp(niveau + 1)}")
+        println("PV       : $pv / $pvMax")
+        println("Attaque  : $attaque")
+        println("Défense  : $defense")
+        println("Vitesse  : $vitesse")
+        println("Att. Spé : $attaqueSpe")
+        println("Déf. Spé : $defenseSpe")
+        println("==========================")
+    }
     // Bloc exécuté automatiquement à la création de l'objet
     init {
         // Applique expInit via le setter de exp, ce qui déclenche automatiquement

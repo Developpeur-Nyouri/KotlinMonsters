@@ -1,5 +1,7 @@
 package org.example.dresseur
 
+import org.example.monstre.IndividuMonstre
+
 /**
  * Représente un entraîneur dans le contexte du jeu.
  *
@@ -14,15 +16,8 @@ class Entraineur(
     var id: Int,
     var nom: String,
     var argents: Int,
-
-    // TODO : liste des monstres actuellement dans l'équipe active de l'entraîneur (limitée, probablement 6 max comme dans les jeux du genre)
-    //TODO equipeMonstre
-
-    // TODO : liste des monstres "en réserve", stockés mais pas dans l'équipe active
-    //TODO boiteMonstre
-
-    // TODO : sac contenant les objets "MonsterKubes" (probablement les objets pour capturer les monstres)
-    //TODO sacAKube
+    var equipeMonstre: MutableList<IndividuMonstre> = mutableListOf(),
+    var boiteMonstre: MutableList<IndividuMonstre> = mutableListOf()
 ) {
     /**
      * Affiche les détails de l'entraîneur, y compris son nom et la quantité d'argent en sa possession.
