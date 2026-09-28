@@ -4,6 +4,7 @@ import org.example.dresseur.Entraineur
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
+import org.example.item.MonsterKube
 
 // --- Entraîneurs ---
 // Création de 2 entraîneurs : le joueur et son rival, chacun avec un nom et de l'argent de départ
@@ -174,6 +175,10 @@ fun main() {
     // Le joueur gagne 50 d'argent, puis on réaffiche ses infos pour vérifier le changement
     joueur.argents += 50
     joueur.afficheDetail()
+
+//    // --- Test du MonsterKube ---
+//    val kube = MonsterKube(1, "MonsterKube", "Un kube de capture basique", 30.0)
+//    kube.utiliser(monstre3)
 
     /*
     // Anciens tests d'affichage de couleurs dans la console, désactivés pour l'instant
