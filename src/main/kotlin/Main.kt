@@ -1,19 +1,16 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.item.MonsterKube
+import org.example.jeu.Partie
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
-import org.example.monstre.IndividuMonstre
-import org.example.item.MonsterKube
 
 // --- Entraîneurs ---
-// Création de 2 entraîneurs : le joueur et son rival, chacun avec un nom et de l'argent de départ
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2, "Regis", 200)
 
 // --- Espèces ---
-// Chaque variable représente le "modèle générique" d'une espèce de monstre,
-// avec ses stats de base et ses modificateurs de level up, tirés du fichier Excel
 val especeSpringleaf = EspeceMonstre(
     id = 1,
     nom = "Springleaf",
@@ -129,15 +126,13 @@ val especeGalum = EspeceMonstre(
 )
 
 // --- Zones ---
-// route1 est créée en premier, donc on ne peut pas encore lui donner sa zoneSuivante (route2 n'existe pas encore)
 val route1 = Zone(
     id = 1,
     nom = "Route 1",
     expZone = 10,
-    especesMonstres = mutableListOf(especeSpringleaf, especeFlamkip) // espèces rencontrables dans cette zone
+    especesMonstres = mutableListOf(especeSpringleaf, especeFlamkip)
 )
 
-// route2 peut directement pointer vers route1 comme zone précédente, car route1 existe déjà à ce stade
 val route2 = Zone(
     id = 2,
     nom = "Route 2",
@@ -145,61 +140,46 @@ val route2 = Zone(
     especesMonstres = mutableListOf(especeAquamy, especeLaoumi)
 )
 
-fun main() {
+// --- Items ---
+val kube1 = MonsterKube(1, "MonsterKube", "Un kube de capture basique", 30.0)
 
-    // On lie manuellement les deux zones entre elles maintenant qu'elles existent toutes les deux
+/**
+ * Création et initialisation de la nouvelle partie.
+ */
+fun nouvellePartie(): Partie {
+    println("==========================================")
+    println("      BIENVENUE DANS KOTLIN MONSTERS !    ")
+    println("==========================================")
+
+    print("Entrez votre nom de dresseur : ")
+    val nomSaisi = readlnOrNull()?.trim()
+
+    if (!nomSaisi.isNullOrEmpty()) {
+        joueur.nom = nomSaisi
+    }
+
+    println("Bonjour ${joueur.nom}, votre aventure commence !")
+
+    return Partie(id = 1, joueur = joueur, zone = route1)
+}
+
+fun main() {
+    // Configuration des liaisons entre zones et inventaire
     route1.zoneSuivante = route2
     route2.zonePrecedante = route1
+    joueur.sacAItems.add(kube1)
 
-    // Création de 3 monstres individuels de test, chacun avec 1500 XP de départ
-    // Grâce au bloc init de IndividuMonstre, ils vont automatiquement monter de niveau à la création
-    val monstre1 = IndividuMonstre(1, "springleaf", 1500.0, especeSpringleaf)
-    val monstre2 = IndividuMonstre(2, "flamkip", 1500.0, especeFlamkip)
-    val monstre3 = IndividuMonstre(3, "aquamy", 1500.0, especeAquamy)
-    monstre1.exp = 3000.0
-    monstre1.pv = -50
-    println("pv après -50 : ${monstre1.pv}")
-    monstre1.pv = 99999
-    println("pv après 99999 : ${monstre1.pv} (pvMax = ${monstre1.pvMax})")
-    println("pv de monstre2 avant : ${monstre2.pv}")
-    monstre1.attaquer(monstre2)
-    println("pv de monstre2 après : ${monstre2.pv}")
-//    monstre1.renommer()
-//    println("Nouveau nom : ${monstre1.nom}")
-
-    monstre1.afficheDetail()
-    // Affiche les infos du joueur et du rival
-    joueur.afficheDetail()
-    rival.afficheDetail()
-
-    // Le joueur gagne 50 d'argent, puis on réaffiche ses infos pour vérifier le changement
-    joueur.argents += 50
-    joueur.afficheDetail()
-
-//    // --- Test du MonsterKube ---
-//    val kube = MonsterKube(1, "MonsterKube", "Un kube de capture basique", 30.0)
-//    kube.utiliser(monstre3)
-
-    /*
-    // Anciens tests d'affichage de couleurs dans la console, désactivés pour l'instant
-    println(changeCouleur("Hello","rouge"))
-    println(changeCouleur("World","bleu"))
-    println("Hello ${changeCouleur("my","jaune")} World")
-    println(changeCouleur("Truc","marron"))
-    */
+    // Lancement de la partie
+    val partie = nouvellePartie()
+    partie.choixStarter()
+    partie.jouer()
 }
 
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
- * Cette fonction utilise les codes d'échappement ANSI pour appliquer une couleur à la sortie console. Si un nom de couleur
- * non reconnu ou une chaîne vide est fourni, aucune couleur n'est appliquée.
- *
- * @param message Le message auquel la couleur sera appliquée.
- * @param couleur Le nom de la couleur à appliquer (ex: "rouge", "vert", "bleu"). Par défaut c'est une chaîne vide, ce qui n'applique aucune couleur.
- * @return Le message coloré sous forme de chaîne, ou le même message si aucune couleur n'est appliquée.
  */
 fun changeCouleur(message: String, couleur: String = ""): String {
-    val reset = "\u001B[0m" // code ANSI qui réinitialise la couleur après le message
+    val reset = "\u001B[0m"
     val codeCouleur = when (couleur.lowercase()) {
         "rouge" -> "\u001B[31m"
         "vert" -> "\u001B[32m"
@@ -208,8 +188,7 @@ fun changeCouleur(message: String, couleur: String = ""): String {
         "magenta" -> "\u001B[35m"
         "cyan" -> "\u001B[36m"
         "blanc" -> "\u001B[37m"
-        else -> "" // pas de couleur si non reconnu
+        else -> ""
     }
-    // On entoure le message avec le code couleur choisi, puis le code de reset
     return "$codeCouleur$message$reset"
 }

@@ -1,143 +1,113 @@
 package org.example.monstre
 
 import org.example.dresseur.Entraineur
-import kotlin.random.Random
+import kotlin.math.pow
 
-// Représente un monstre individuel et unique possédé par un joueur ou rencontré en jeu
-// (contrairement à EspeceMonstre qui ne décrit que le "modèle" générique de l'espèce)
+/**
+ * Représente un monstre individuel dans le jeu.
+ */
 class IndividuMonstre(
     var id: Int,
     var nom: String,
-    expInit: Double, // paramètre simple (pas val/var) : sert uniquement à l'initialisation, n'est pas stocké comme propriété
-    var espece: EspeceMonstre, // l'espèce à laquelle appartient ce monstre (ex: Flamkip)
-    var entraineur: Entraineur? = null // le dresseur qui possède ce monstre, null si sauvage
+    expDepart: Double,
+    val espece: EspeceMonstre,
+    var entraineur: Entraineur? = null
 ) {
-    // Niveau de départ du monstre
     var niveau: Int = 1
-
-    // Chaque statistique part de la stat de base de l'espèce, avec un bonus/malus aléatoire entre -2 et +2
-    // pour que deux monstres de la même espèce ne soient jamais parfaitement identiques
-    var attaque: Int = espece.baseAttaque + Random.nextInt(-2, 3)
-    var defense: Int = espece.baseDefense + Random.nextInt(-2, 3)
-    var vitesse: Int = espece.baseVitesse + Random.nextInt(-2, 3)
-    var attaqueSpe: Int = espece.baseAttaqueSpe + Random.nextInt(-2, 3)
-    var defenseSpe: Int = espece.baseDefenseSpe + Random.nextInt(-2, 3)
-
-    // Les PV max suivent la même logique, mais avec un aléatoire plus large (-5 à +5)
-    var pvMax: Int = espece.basePv + Random.nextInt(-5, 6)
-
-    // "Potentiel" propre à cet individu : multiplicateur aléatoire utilisé plus tard dans levelUp()
-    // pour rendre chaque monstre unique dans sa progression
-    var potentiel: Double = Random.nextDouble(0.5, 2.0)
-
-    // Expérience actuelle du monstre, avec un comportement personnalisé (setter custom)
-    var exp: Double = 0.0
-        get() = field // renvoie simplement la valeur stockée, comportement par défaut
+    var exp: Double = expDepart
         set(value) {
             field = value
-            val estNiveau1 = niveau == 1
-            while (field >= palierExp(niveau)) {
-                levelUp()
-                if (!estNiveau1) {
-                    println("Le monstre $nom est maintenant niveau $niveau !")
-                }
-            }
+            levelUp()
         }
 
-    // Points de vie actuels, avec un setter personnalisé
-    var pv: Int = pvMax
-        get() = field // comportement par défaut pour la lecture
-        set(nouveauPv) {
-            // on "bride" la valeur entre 0 et pvMax pour éviter des PV négatifs ou supérieurs au max
-            field = nouveauPv.coerceIn(0, pvMax)
+    var pvMax: Int = 0
+    var pv: Int = 0
+        set(value) {
+            field = value.coerceIn(0, pvMax)
         }
+
+    var attaque: Int = 0
+    var defense: Int = 0
+    var vitesse: Int = 0
+    var attaqueSpe: Int = 0
+    var defenseSpe: Int = 0
+
+    init {
+        // Applique l'expérience de départ pour calculer le niveau et les stats
+        this.exp = expDepart
+        this.pv = this.pvMax
+    }
 
     /**
-     * Calcule l'expérience totale nécessaire pour atteindre un niveau donné.
-     *
-     * @param niveau Niveau cible.
-     * @return Expérience cumulée nécessaire pour atteindre ce niveau.
+     * Calcule le palier d'expérience nécessaire pour un niveau donné.
      */
-    fun palierExp(niveau: Int): Double {
-        // Formule : 100 * (niveau - 1)^2
-        return 100 * Math.pow((niveau - 1).toDouble(), 2.0)
-    }
-
-    // Fait monter le monstre d'un niveau : augmente le niveau et toutes ses statistiques
-    fun levelUp() {
-        niveau++ // incrémente le niveau
-
-        // Pour chaque statistique : on ajoute (mod de l'espèce * potentiel de l'individu, arrondi)
-        // plus un petit bonus/malus aléatoire entre -2 et +2 (ou -5/+5 pour les PV)
-        attaque += (Math.round(espece.modAttaque * potentiel) + Random.nextInt(-2, 3)).toInt()
-        defense += (Math.round(espece.modDefense * potentiel) + Random.nextInt(-2, 3)).toInt()
-        vitesse += (Math.round(espece.modVitesse * potentiel) + Random.nextInt(-2, 3)).toInt()
-        attaqueSpe += (Math.round(espece.modAttaqueSpe * potentiel) + Random.nextInt(-2, 3)).toInt()
-        defenseSpe += (Math.round(espece.modDefenseSpe * potentiel) + Random.nextInt(-2, 3)).toInt()
-        val ancienPvMax = pvMax
-        pvMax += (Math.round(espece.modPv * potentiel) + Random.nextInt(-5, 6)).toInt()
-        pv += pvMax - ancienPvMax
-
+    fun palierExp(niv: Int): Double {
+        return 10.0 * niv.toDouble().pow(3) / 4.0
     }
 
     /**
-     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
-     *
-     * Les dégâts sont calculés de manière très simple pour le moment :
-     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
-     *
-     * @param cible Monstre cible de l'attaque.
+     * Recalcule les statistiques du monstre en fonction de son niveau.
+     */
+    fun recalculerStats() {
+        pvMax = espece.basePv + ((niveau - 1) * espece.modPv).toInt()
+        attaque = espece.baseAttaque + ((niveau - 1) * espece.modAttaque).toInt()
+        defense = espece.baseDefense + ((niveau - 1) * espece.modDefense).toInt()
+        vitesse = espece.baseVitesse + ((niveau - 1) * espece.modVitesse).toInt()
+        attaqueSpe = espece.baseAttaqueSpe + ((niveau - 1) * espece.modAttaqueSpe).toInt()
+        defenseSpe = espece.baseDefenseSpe + ((niveau - 1) * espece.modDefenseSpe).toInt()
+    }
+
+    /**
+     * Fait monter le monstre en niveau tant qu'il a assez d'expérience.
+     */
+    private fun levelUp() {
+        while (exp >= palierExp(niveau + 1)) {
+            niveau++
+            println("$nom monte au niveau $niveau !")
+        }
+        val anciensPvMax = pvMax
+        recalculerStats()
+        if (pvMax > anciensPvMax && anciensPvMax > 0) {
+            pv += (pvMax - anciensPvMax)
+        }
+    }
+
+    /**
+     * Ajoute de l'expérience au monstre.
+     */
+    fun ajouterExp(gainExp: Double) {
+        this.exp += gainExp
+    }
+
+    /**
+     * Effectue une attaque simple contre un monstre cible.
      */
     fun attaquer(cible: IndividuMonstre) {
-        val degatBrut = this.attaque
-        var degatTotal = degatBrut - (this.defense / 2)
-        if (degatTotal < 1) {
-            degatTotal = 1
-        }
-        val pvAvant = cible.pv
-        cible.pv -= degatTotal
-        val pvApres = cible.pv
-        println("${this.nom} inflige ${pvAvant - pvApres} dégâts à ${cible.nom}")
+        val degats = (this.attaque - cible.defense / 2).coerceAtLeast(1)
+        println("${this.nom} attaque ${cible.nom} et inflige $degats dégâts !")
+        cible.pv -= degats
     }
 
     /**
-     * Demande au joueur de renommer le monstre.
-     *
-     * Si l'utilisateur entre un texte vide, le nom n'est pas modifié.
+     * Permet de renommer le monstre.
      */
-    fun renommer() {
-        println("Renommer $nom ?")
-        val nouveauNom = readln()
-        if (nouveauNom.isNotEmpty()) {
+    fun renommer(nouveauNom: String) {
+        if (nouveauNom.isNotBlank()) {
+            println("$nom est renommé en $nouveauNom !")
             this.nom = nouveauNom
         }
     }
 
     /**
-     * Affiche l'art ASCII du monstre suivi de ses caractéristiques détaillées.
+     * Affiche les détails et statistiques du monstre.
      */
     fun afficheDetail() {
-        // 1. Affiche l'art ASCII du monstre de face
-        println(espece.afficheArt(deFace = true))
-
-        // 2. Affiche les caractéristiques du monstre
-        val type = ""
-        println("===== $nom ($type) =====")
-        println("Espèce   : ${espece.nom}")
-        println("Niveau   : $niveau")
-        println("EXP      : $exp / ${palierExp(niveau + 1)}")
-        println("PV       : $pv / $pvMax")
-        println("Attaque  : $attaque")
-        println("Défense  : $defense")
-        println("Vitesse  : $vitesse")
-        println("Att. Spé : $attaqueSpe")
-        println("Déf. Spé : $defenseSpe")
-        println("==========================")
-    }
-    // Bloc exécuté automatiquement à la création de l'objet
-    init {
-        // Applique expInit via le setter de exp, ce qui déclenche automatiquement
-        // un ou plusieurs levelUp() si l'expérience de départ est suffisante
-        this.exp = expInit
+        println("=== MONSTRE : $nom (${espece.nom}) ===")
+        println("Niveau : $niveau | EXP : $exp / ${palierExp(niveau + 1)}")
+        println("PV : $pv / $pvMax")
+        println("Attaque : $attaque | Défense : $defense")
+        println("Vitesse : $vitesse")
+        println("Attaque Spé : $attaqueSpe | Défense Spé : $defenseSpe")
+        println("======================================")
     }
 }
